@@ -1,0 +1,27 @@
+/* Reset the base theme behaviours we do not want */
+
+$theme.sc-text-field-view {
+    background: transparent;
+
+    &.focus {
+        outline: none;
+    }
+
+    .border {
+        display: none;
+        -webkit-appearance: none;
+    }
+
+    .padding {
+        left: 0;
+        right: 0;
+    }
+
+    input {
+        border: 2px inset;
+        -webkit-appearance: textfield;
+    }
+    input[type="search"] {
+        -webkit-appearance: searchfield;
+    }
+}

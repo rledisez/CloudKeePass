@@ -1,0 +1,14 @@
+diff --git b/apps/cloud_kee_pass/library/vendors/jparser.js a/apps/cloud_kee_pass/library/vendors/jparser.js
+index 9a7930c..2abc2ca 100644
+--- b/apps/cloud_kee_pass/library/vendors/jparser.js
++++ a/apps/cloud_kee_pass/library/vendors/jparser.js
+@@ -1,9 +1,5 @@
+ (function () {
+ 
+-if (typeof jDataView === 'undefined' && typeof require !== 'undefined') {
+-	jDataView = require('jDataView');
+-}
+-
+ // Extend code from underscorejs (modified for fast inheritance using prototypes)
+ function inherit(obj) {
+ 	if ('create' in Object) {

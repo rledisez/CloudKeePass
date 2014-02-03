@@ -1,0 +1,70 @@
+body {
+    background: #373737;
+}
+
+#loading {
+    background: #373737;
+}
+
+.loading {
+    display: block;
+
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -76px !important;
+    margin-left: -64px !important;
+    width: 128px !important;
+    height: 142px !important; /* 128 + 14 */
+
+    background: transparent sc_static('images/loading.gif') 0 0 no-repeat !important;
+    border: 0 !important;
+    text-align: center;
+    padding: 0 !important;
+    color: #bbb !important;
+    line-height: 277px !important; /* 142*2 - 14/2 */
+
+    text-shadow: initial !important;
+}
+
+$theme.text-align-left   { text-align: left;   }
+$theme.text-align-center { text-align: center; }
+$theme.text-align-right  { text-align: right;  }
+
+/*
+ * Split Divider
+ */
+$theme.sc-layout-horizontal .split-divider {
+    background: transparent;
+    z-index: 1;
+
+    .line {
+        background: #333;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 5px;
+        width: 1px;
+    }
+}
+
+/*
+ * Scroller
+ */
+$theme.sc-scroller-view.sc-vertical {
+    background: #fcfcfc;
+
+    .thumb {
+        position: absolute;
+        overflow: visible;
+        width: 8px;
+        left: 3px;
+        border-radius: 7px;
+        /* background: #c2c2c2; */
+        background: rgba(0, 0, 0, 0.15);
+    }
+
+    &:hover .thumb {
+        /* background: #7d7d7d; */
+        background: rgba(0, 0, 0, 0.5);
+    }
+}

@@ -1,0 +1,50 @@
+$theme.open-database-page {
+    background: #373737;
+    z-index: 2; /* OpenDatabasePage will be over OperateDatabasePage, so the animation
+                   display correctly */
+
+    .sc-text-field-view {
+        background: transparent;
+
+            &.native-drop-target .border {
+                border: 6px dashed #02c202;
+            }
+        .border {
+            display: block;
+            background: rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+        }
+        .padding {
+            left: 10px;
+            right: 35px;
+        }
+        input {
+            border: none;
+            font-size: 15px;
+            color: #bbb;
+        }
+    }
+
+    .label {
+        color: #bbb;
+        line-height: 24px;
+    }
+
+    .half-round-view {
+        background: #373737;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+        border-radius: 32px;
+    }
+
+    .submit-button {
+        cursor: pointer;
+        box-shadow: inset 0 0 0 1px #00a2d3, 0 0 0 6px rgba(0, 0, 0, 0.16);
+        border-radius: 24px;
+
+        background-image: sc_static('images/open-arrow.png'), linear-gradient(to bottom, #00a2d3,#0d7796);
+        &.active {
+            background-image: sc_static('images/open-arrow.png'), linear-gradient(to top, #00a2d3,#0d7796);
+        }
+    }
+}

@@ -1,0 +1,10 @@
+diff --git a/apps/cloud_kee_pass/library/vendors/jdataview.js b/apps/cloud_kee_pass/library/vendors/jdataview.js
+index 1e32fa7..4cb2aa1 100644
+--- a/apps/cloud_kee_pass/library/vendors/jdataview.js
++++ b/apps/cloud_kee_pass/library/vendors/jdataview.js
+@@ -1,3 +1,5 @@
++// sc_resource('kdb-worker.js')
++
+ //
+ // jDataView by Vjeux <vjeuxx@gmail.com> - Jan 2010
+ // Continued by RReverser <me@rreverser.com> - Feb 2013

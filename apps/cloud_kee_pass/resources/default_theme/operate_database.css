@@ -1,0 +1,320 @@
+$theme.toolbar {
+    background: linear-gradient(to bottom, #e8e8e8 0%,#afafaf 100%);
+    border-bottom: 1px solid #696969;
+
+    .toolbar-lock-button {
+        background: sc_static('images/toolbar/lock.png') 0 0 no-repeat;
+        &.active {
+            background: sc_static('images/toolbar/lock-active.png') 0 0 no-repeat;
+        }
+    }
+
+    .toolbar-save-button {
+        background: sc_static('images/toolbar/save.png') 0 0 no-repeat;
+        &.active {
+            background: sc_static('images/toolbar/save-active.png') 0 0 no-repeat;
+        }
+    }
+
+    .toolbar-database-button {
+        background: sc_static('images/toolbar/database.png') 0 0 no-repeat;
+        &.active {
+            background: sc_static('images/toolbar/database-active.png') 0 0 no-repeat;
+        }
+    }
+
+    .sc-text-field-view {
+        background-color: transparent;
+
+        .padding {
+            left: 0;
+            right: 0;
+        }
+
+        input {
+            background: #fff;
+            -webkit-appearance: searchfield;
+            font-size: 20px;
+        }
+    }
+}
+
+$theme.entriesSets {
+    background: #373737;
+    color: #aaa;
+
+    .sc-list-item-view {
+        border: 1px 0 solid #373737;
+
+        &.sel {
+            background: linear-gradient(to bottom, #3b71ad 0%,#3262a5 100%);
+            border-top-color: #86aacd;
+            border-bottom-color: #4579b2;
+
+            .count {
+                border: none;
+            }
+        }
+
+        &.sc-group-item {
+            font-weight: bold;
+
+            .disclosure {
+                height: 100%;
+
+                .sc-button-label {
+                    font-size: 11px;
+                    position: absolute;
+                    top: 0;
+                    right: 15px;
+                    z-index: 2;
+                    text-transform: none;
+                    height: 100%;
+                    line-height: 200%;
+                    display: none;
+                    cursor: pointer;
+                }
+                .sc-button-label:before {
+                    content: "Display";
+                }
+
+                img.disclosure.button {
+                    display: none;
+                }
+            }
+
+            &:hover {
+                .sc-button-label {
+                    display: block;
+                }
+            }
+        }
+
+        &.sc-item {
+            margin-left: -32px; /* Do not indent the first level */
+
+            .disclosure {
+                border: 0 none;
+
+                img.disclosure.button {
+                    display: none;
+                }
+
+                .sc-button-label {
+                    display: block;
+                    height: 20px;
+                    width: 20px;
+                    line-height: 20px;
+                    text-align: center;
+                    font-size: 10px;
+                    color: #5f5f5f;
+                    text-shadow: 0px 1px 0px #999;
+
+                    &:before {
+                        content: "\25B6";
+                    }
+                }
+                &.sel .sc-button-label:before { content: "\25BC"; }
+            }
+
+            .icon {
+                width: 16px;
+                height: 16px;
+                left: 18px; /* 4 + 14 */
+
+                &.entries-sets-all {
+                    background: sc_static('images/entries-sets/entries-sets-favorite.png') 0 0 no-repeat;
+                }
+                &.entries-sets-group {
+                    background: sc_static('images/entries-sets/entries-sets-group.png') 0 0 no-repeat;
+                }
+                &.entries-set-tag {
+                    background: sc_static('images/entries-sets/entries-set-tag.png') 0 0 no-repeat;
+                }
+            }
+
+            label {
+                left: 38px; /* 24 + 14 */
+            }
+
+            .count {
+                font-weight: normal;
+                color: inherit;
+
+                margin-top: -7px;
+                right: 10px;
+                height: 14px;
+                line-height: 14px;
+
+                background: rgba(0, 0, 0, 0.16);
+                box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+                border: none;
+            }
+        }
+
+    }
+
+    .sc-group-item {
+        text-transform: uppercase;
+    }
+
+    .sc-scroller-view.sc-vertical {
+        background: rgba(55, 55, 55, 0.8);
+
+        .thumb {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        &:hover .thumb {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+}
+
+$theme.entriesList {
+    background: #f2f2f2;
+
+    .sc-list-item-view {
+        background: #dadada;
+
+        .sc-outline {
+            background: #f2f2f2;
+            bottom: 1px;
+            border: 1px solid;
+            border-color: #fff;
+
+            .icon {
+                height: 32px;
+                width: 32px;
+                margin-top: -16px;
+            }
+
+            label {
+                left: 42px;
+                height: 36px;
+                margin-top: -18px;
+
+                .title {
+                    font-weight: bold;
+                    letter-spacing: 0.5px;
+                }
+                .subtitle {
+                    color: #999;
+                }
+            }
+        }
+
+        &.sel .sc-outline {
+            background: #2f78bf;
+            background-image: linear-gradient(to bottom, #2867a5 0%, #2f78bf 100%);
+            bottom: 0px;
+            border-color: #1c456f;
+        }
+    }
+
+    .sc-scroller-view.sc-vertical {
+        background: rgba(242, 242, 242, 0.8);
+    }
+}
+
+$theme.entryContent {
+    background: #f7f7f7;
+
+    input[readonly], textarea[readonly] {
+        border: none;
+    }
+
+    .entryTitle {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 28px;
+    }
+
+    .entryLabel {
+        line-height: 22px;
+    }
+
+    .entryField {
+        line-height: 22px;
+        background-color: transparent;
+
+        textarea {
+            line-height: inherit;
+        }
+
+        .border {
+            display: none;
+            margin: 0;
+            padding: 0;
+        }
+        .padding {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .historyNavigator {
+        line-height: 24px;
+        text-align: center;
+        background: linear-gradient(to bottom, #fff 0%,#bcbcbc 100%);
+        border: 1px solid #999;
+        border-radius: 6px;
+
+        .history-date-label {
+        }
+        .history-navigation-button {
+            color: #373737;
+            font-size: 10px;
+
+            &.active {
+                background: linear-gradient(to top, #fff 0%,#bcbcbc 100%);
+            }
+            &.disabled {
+                color: #a4a4a4;
+            }
+
+            &.history-previous-button {
+                border-right: 1px solid #999;
+                &:before { content: "\25C0"; }
+            }
+            &.history-next-button {
+                border-left: 1px solid #999;
+                &:before { content: "\25B6"; }
+            }
+        }
+    }
+
+    .historyRibbon {
+        height: 50px;
+        width: 210px;
+
+        -webkit-transform: rotate(45deg);
+        -moz-transform:    rotate(45deg);
+        -ms-transform:     rotate(45deg);
+        -o-transform:      rotate(45deg);
+        transform:         rotate(45deg);
+
+        color: #333;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 50px;
+        text-transform: uppercase;
+        text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+
+        /*background: linear-gradient(to bottom, #bfdc7a 0%,#8ebf45 100%);*/
+        background: linear-gradient(to bottom, #dc7a7a 0%,#bf4545 100%);
+    }
+}
+
+input[type="password"],
+{
+    font-family: Verdana;
+}
+
+.icon-0-32 { background-image: static_url('images/entry-icons/icon-0-32.png'); }
+.icon-0-64 { background-image: static_url('images/entry-icons/icon-0-64.png'); }

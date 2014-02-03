@@ -1,0 +1,10 @@
+diff --git a/apps/cloud_kee_pass/library/vendors/salsa20.js b/apps/cloud_kee_pass/library/vendors/salsa20.js
+index dae3100..0cf0ccb 100644
+--- a/apps/cloud_kee_pass/library/vendors/salsa20.js
++++ b/apps/cloud_kee_pass/library/vendors/salsa20.js
+@@ -1,3 +1,5 @@
++// sc_resource('kdb-worker.js')
++
+ // https://gist.github.com/dchest/4582374
+ 
+ var Salsa20 = (function () {
