@@ -161,6 +161,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 username: SC.View.design({
                     layout: { height: 22 },
                     childViews: ['label','field'],
+                    isVisibleBinding: SC.Binding.oneWay('.field.value').bool(),
 
                     label: SC.LabelView.design({
                         layout: { left: 0, height: 22, width: 150 },
@@ -179,6 +180,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 password: SC.View.design({
                     layout: { height: 22 },
                     childViews: ['label','field'],
+                    isVisibleBinding: SC.Binding.oneWay('.field.value').bool(),
 
                     label: SC.LabelView.design({
                         layout: { left: 0, height: 22, width: 150 },
@@ -198,6 +200,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 notes: SC.View.design({
                     layout: { height: 132 },
                     childViews: ['label','field'],
+                    isVisibleBinding: SC.Binding.oneWay('.field.value').bool(),
 
                     label: SC.LabelView.design({
                         layout: { left: 0, height: 22, width: 150 },
@@ -216,6 +219,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 tags: SC.View.design({
                     layout: { height: 22 },
                     childViews: ['label','field'],
+                    isVisibleBinding: SC.Binding.oneWay('.field.value').bool(),
 
                     label: SC.LabelView.design({
                         layout: { left: 0, height: 22, width: 150 },
@@ -234,6 +238,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 files: SC.View.design({
                     layout: { height: 22 },
                     childViews: ['label','field'],
+                    isVisibleBinding: SC.Binding.oneWay('.field.value').bool(),
 
                     label: SC.LabelView.design({
                         layout: { left: 0, height: 22, width: 150 },
