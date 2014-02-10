@@ -270,7 +270,9 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
             var tagsStr = this.get('document')
                 .evaluate('Tags', this.get('elementVersion'), null, XPathResult.STRING_TYPE, null)
                 .stringValue;
-            tags.pushObjects( tagsStr.trim().split(/ *; */) );
+            if( tagsStr.match(/[^ ;]/) ) {
+                tags.pushObjects( tagsStr.trim().split(/ *; */) );
+            }
         }
 
         return tags;
