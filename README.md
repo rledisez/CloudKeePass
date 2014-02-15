@@ -42,7 +42,10 @@ Contributions welcome. This list is not exhaustive and not in any particular ord
 * Clean memory after locking the file (/!\ close the tab when you leave, with the JS debugger all data are available /!\)
 * Localization/Internationalization
 * Clean all the TODO/FIXME in the code
-* Download of the embedded files 
+* Download of the embedded files
 * Improvement of the drag and drop on the unlock page
 * Test IE 10
 * Add licence informations (GPLv3)
+* Add all icons for a KeePass database (from 0 to 68)
+* Make a stripe for all images
+* Offline web application
