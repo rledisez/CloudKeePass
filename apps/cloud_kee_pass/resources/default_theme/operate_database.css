@@ -236,8 +236,10 @@ $theme.entryContent {
     }
 
     .entryField {
-        line-height: 22px;
+        line-height: 20px;
         background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 3px;
 
         textarea {
             line-height: inherit;
@@ -255,6 +257,40 @@ $theme.entryContent {
             right: 0;
             margin: 0;
             padding: 0;
+        }
+
+        .copy-button, .select-button {
+            display: none;
+            cursor: pointer;
+        }
+        .copy-button {
+            background: static_url('images/copy-button.png') center center no-repeat;
+        }
+        .select-button {
+            background: static_url('images/select-button.png') center center no-repeat;
+        }
+
+        &.hover {
+            border-color: #999;
+
+            .copy-button {
+                display: block;
+                background: static_url('images/copy-button.png') center center no-repeat,
+                            linear-gradient(to bottom, #fff 0%,#bcbcbc 100%);
+                &.active {
+                    background: static_url('images/copy-button.png') center center no-repeat,
+                                linear-gradient(to top, #fff 0%,#bcbcbc 100%);
+                }
+            }
+            .select-button {
+                display: block;
+                background: static_url('images/select-button.png') center center no-repeat,
+                            linear-gradient(to bottom, #fff 0%,#bcbcbc 100%);
+                &.active {
+                    background: static_url('images/select-button.png') center center no-repeat,
+                                linear-gradient(to top, #fff 0%,#bcbcbc 100%);
+                }
+            }
         }
     }
 
@@ -306,7 +342,6 @@ $theme.entryContent {
         text-transform: uppercase;
         text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
 
-        /*background: linear-gradient(to bottom, #bfdc7a 0%,#8ebf45 100%);*/
         background: linear-gradient(to bottom, #dc7a7a 0%,#bf4545 100%);
     }
 }
@@ -318,3 +353,29 @@ input[type="password"],
 
 .icon-0-32 { background-image: static_url('images/entry-icons/icon-0-32.png'); }
 .icon-0-64 { background-image: static_url('images/entry-icons/icon-0-64.png'); }
+
+$theme.sc-picker.textfieldCopySelectTooltip {
+    margin-top: -10px;
+    background: #373737;
+    opacity: 0.9;
+    border-radius: 3px;
+
+    & > .sc-pointer {
+        width: 0;
+        height: 0;
+        line-height: 0;
+        border: 6px dashed #373737;
+        &.perfectBottom {
+            top: -6px;
+            border-top: none;
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+    }
+
+    & > .sc-label-view {
+        background-color: transparent;
+        color: white;
+        line-height: 22px;
+    }
+}

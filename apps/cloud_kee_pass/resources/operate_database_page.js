@@ -138,6 +138,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
 
                     icon: SC.ImageView.design({
                         layout: { top: 0, left: 86, height: 64, width: 64 },
+                        // FIXME: each time value change, a new class is added to the attribute class
                         valueBinding: SC.Binding.transform(function (value) { return 'icon-%{0}-64'.fmt([value]); }).from('CloudKeePass.databaseController.entries*selection.firstObject.iconId'),
                     }),
 
@@ -149,12 +150,14 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                         isEditable: NO,
                     }),
 
-                    url: SC.TextFieldView.design(CloudKeePass.TextFieldCopy, SC.AutoResize, {
+                    url: CloudKeePass.TextFieldCopySelectView.design(SC.AutoResize, {
                         layout: { top: 37, left: 160, height: 16 },
-                        autoResizePadding: 0,
                         classNames: ['entryField'],
                         valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.url',
                         isEditable: NO,
+
+                        copyImage: 'copy-button',
+                        selectImage: 'select-button',
                     }),
                 }),
 
@@ -168,12 +171,14 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                         classNames: ['text-align-right','entryLabel'],
                         value: "Username".loc(),
                     }),
-                    field: SC.TextFieldView.design(CloudKeePass.TextFieldCopy, SC.AutoResize, {
-                        layout: { left: 160, height: 22 },
-                        autoResizePadding: 0,
+                    field: CloudKeePass.TextFieldCopySelectView.design(SC.AutoResize, {
+                        layout: { left: 160, height: 20 }, // 20px height instead of 22px because of the 1px border
                         classNames: ['entryField'],
                         valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.username',
                         isEditable: NO,
+
+                        copyImage: 'copy-button',
+                        selectImage: 'select-button',
                     }),
                 }),
 
@@ -187,13 +192,15 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                         classNames: ['text-align-right','entryLabel'],
                         value: "Password".loc(),
                     }),
-                    field: SC.TextFieldView.design(CloudKeePass.TextFieldCopy, SC.AutoResize, {
-                        layout: { left: 160, height: 22 },
-                        autoResizePadding: 0,
+                    field: CloudKeePass.TextFieldCopySelectView.design(SC.AutoResize, {
+                        layout: { left: 160, height: 20 },
                         classNames: ['entryField'],
                         valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.password',
                         type: 'password',
                         isEditable: NO,
+
+                        copyImage: 'copy-button',
+                        selectImage: 'select-button',
                     }),
                 }),
 
