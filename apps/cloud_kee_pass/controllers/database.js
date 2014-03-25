@@ -62,7 +62,7 @@ CloudKeePass.databaseController = SC.Controller.create({
 
         _contentDidChange: function() {
             this.notifyPropertyChange('content');
-        }.observes('.content.treeItemChildren.1.treeItemChildren','.content.treeItemChildren.2.treeItemChildren'),
+        }.observes('.content.treeItemChildren*@each.treeItemChildren'),
     }),
 
     entries: SC.ArrayController.create({
