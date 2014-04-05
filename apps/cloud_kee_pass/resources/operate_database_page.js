@@ -37,7 +37,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 layout: { centerY: 0, right: 10, height: 20, width: 250 },
                 hint: "Search".loc(),
                 type: 'search',
-                valueBinding: 'CloudKeePass.databaseController.searchText',
+                valueBinding: 'CloudKeePass.searchEntriesController.filter',
             }),
         }),
 

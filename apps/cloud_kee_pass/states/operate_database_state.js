@@ -47,7 +47,7 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
             _entriesSetsSelectionBackup: null,
 
             enterState: function() {
-                CloudKeePass.databaseController.set('searchText', '');
+                CloudKeePass.searchEntriesController.set('filter', '');
 
                 if( CloudKeePass.entriesSetsController.get('selection').get('length') == 0 ) {
                     CloudKeePass.entriesSetsController.selectObject(this._entriesSetsSelectionBackup);
@@ -60,11 +60,11 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
                 CloudKeePass.databaseController.get('entries').get('contentBindingSelection').disconnect();
             },
 
-            _searchTextDidChange: function() {
-                if( CloudKeePass.databaseController.get('searchText').length > 0 ) {
+            _searchFilterDidChange: function() {
+                if( CloudKeePass.searchEntriesController.get('filter').length > 0 ) {
                     this.gotoState('browseSearchResultsState');
                 }
-            }.stateObserves('CloudKeePass.databaseController.searchText'),
+            }.stateObserves('CloudKeePass.searchEntriesController.filter'),
         }),
 
         browseSearchResultsState: SC.State.design({
@@ -77,11 +77,11 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
                 CloudKeePass.databaseController.get('entries').get('contentBindingSearchResults').disconnect();
             },
 
-            _searchTextDidChange: function() {
-                if( CloudKeePass.databaseController.get('searchText').length == 0 ) {
+            _searchFilterDidChange: function() {
+                if( CloudKeePass.searchEntriesController.get('filter').length == 0 ) {
                     this.gotoState('browseDatabaseState');
                 }
-            }.stateObserves('CloudKeePass.databaseController.searchText'),
+            }.stateObserves('CloudKeePass.searchEntriesController.filter'),
 
             _entriesSetsSelectionDidChange: function() {
                 this.gotoState('browseDatabaseState');
