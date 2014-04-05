@@ -27,7 +27,7 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
         initialSubstate: 'browseDatabaseState',
 
         _entrySelectionDidChange: function() {
-            var selection = CloudKeePass.databaseController.get('entries').get('selection');
+            var selection = CloudKeePass.entriesController.get('selection');
 
             var viewName = 'entryContent_noSelection';
             if( selection && selection.get('length') == 1 ) {
@@ -41,7 +41,7 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
 
             CloudKeePass.getPath('operateDatabasePage.mainPane.viewer.entryContent')
                 .set('nowShowing', 'CloudKeePass.operateDatabasePage.mainPane.viewer.%{0}'.fmt([viewName]));
-        }.stateObserves('CloudKeePass.databaseController*entries.selection'),
+        }.stateObserves('CloudKeePass.entriesController.selection'),
 
         browseDatabaseState: SC.State.design({
             _entriesSetsSelectionBackup: null,
@@ -52,12 +52,12 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
                 if( CloudKeePass.entriesSetsController.get('selection').get('length') == 0 ) {
                     CloudKeePass.entriesSetsController.selectObject(this._entriesSetsSelectionBackup);
                 }
-                CloudKeePass.databaseController.get('entries').get('contentBindingSelection').connect();
+                CloudKeePass.entriesController.get('contentBindingSelection').connect();
             },
 
             exitState: function() {
                 this._entriesSetsSelectionBackup = CloudKeePass.entriesSetsController.get('selection').get('firstObject');
-                CloudKeePass.databaseController.get('entries').get('contentBindingSelection').disconnect();
+                CloudKeePass.entriesController.get('contentBindingSelection').disconnect();
             },
 
             _searchFilterDidChange: function() {
@@ -70,11 +70,11 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
         browseSearchResultsState: SC.State.design({
             enterState: function() {
                 CloudKeePass.entriesSetsController.selectObject(null);
-                CloudKeePass.databaseController.get('entries').get('contentBindingSearchResults').connect();
+                CloudKeePass.entriesController.get('contentBindingSearchResults').connect();
             },
 
             exitState: function() {
-                CloudKeePass.databaseController.get('entries').get('contentBindingSearchResults').disconnect();
+                CloudKeePass.entriesController.get('contentBindingSearchResults').disconnect();
             },
 
             _searchFilterDidChange: function() {

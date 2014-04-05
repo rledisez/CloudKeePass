@@ -90,8 +90,8 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 }),
 
                 contentView: SC.SourceListView.design({
-                    contentBinding: 'CloudKeePass.databaseController.entries.arrangedObjects',
-                    selectionBinding: 'CloudKeePass.databaseController.entries.selection',
+                    contentBinding: 'CloudKeePass.entriesController.arrangedObjects',
+                    selectionBinding: 'CloudKeePass.entriesController.selection',
 
                     rowHeight: 48,
 
@@ -139,21 +139,21 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                     icon: SC.ImageView.design({
                         layout: { top: 0, left: 86, height: 64, width: 64 },
                         // FIXME: each time value change, a new class is added to the attribute class
-                        valueBinding: SC.Binding.transform(function (value) { return 'icon-%{0}-64'.fmt([value]); }).from('CloudKeePass.databaseController.entries*selection.firstObject.iconId'),
+                        valueBinding: SC.Binding.transform(function (value) { return 'icon-%{0}-64'.fmt([value]); }).from('CloudKeePass.entriesController*selection.firstObject.iconId'),
                     }),
 
                     title: SC.TextFieldView.design(SC.AutoResize, {
                         layout: { top: 5, left: 160, height: 28 },
                         autoResizePadding: 0,
                         classNames: ['entryTitle','entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.title',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.title',
                         isEditable: NO,
                     }),
 
                     url: CloudKeePass.TextFieldCopySelectView.design(SC.AutoResize, {
                         layout: { top: 37, left: 160, height: 16 },
                         classNames: ['entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.url',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.url',
                         isEditable: NO,
 
                         copyImage: 'copy-button',
@@ -174,7 +174,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                     field: CloudKeePass.TextFieldCopySelectView.design(SC.AutoResize, {
                         layout: { left: 160, height: 20 }, // 20px height instead of 22px because of the 1px border
                         classNames: ['entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.username',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.username',
                         isEditable: NO,
 
                         copyImage: 'copy-button',
@@ -195,7 +195,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                     field: CloudKeePass.TextFieldCopySelectView.design(SC.AutoResize, {
                         layout: { left: 160, height: 20 },
                         classNames: ['entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.password',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.password',
                         type: 'password',
                         isEditable: NO,
 
@@ -217,7 +217,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                     field: SC.TextFieldView.design({
                         layout: { top: 0, bottom: 0, left: 160, width: 320 },
                         classNames: ['entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.notes',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.notes',
                         isTextArea: YES,
                         isEditable: NO,
                     }),
@@ -237,7 +237,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                         layout: { left: 160, height: 22 },
                         autoResizePadding: 0,
                         classNames: ['entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.tags',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.tags',
                         isEditable: NO,
                     }),
                 }),
@@ -256,7 +256,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                         layout: { left: 160, height: 22 },
                         autoResizePadding: 0,
                         classNames: ['entryField'],
-                        valueBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.files',
+                        valueBinding: 'CloudKeePass.entriesController*selection.firstObject.files',
                         isEditable: NO,
                     }),
                 }),
@@ -266,7 +266,7 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                     useAbsoluteLayout: YES,
                     classNames: ['text-align-center','historyRibbon'],
                     value: "Archived".loc(),
-                    isVisibleBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.canForwardVersions',
+                    isVisibleBinding: 'CloudKeePass.entriesController*selection.firstObject.canForwardVersions',
                 }),
 
                 historyNavigator: SC.View.design({
@@ -274,21 +274,21 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                     useAbsoluteLayout: YES,
                     childViews: ['dateLabel','previousButton','nextButton'],
                     classNames: ['historyNavigator'],
-                    isVisibleBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.hasHistory',
+                    isVisibleBinding: 'CloudKeePass.entriesController*selection.firstObject.hasHistory',
 
                     dateLabel: SC.LabelView.design({
                         layout: { top: 0, bottom: 0, left: 0, right: 0 },
                         classNames: ['text-align-center','history-date-label'],
                         valueBinding: SC.Binding.dateTime( "%B %D, %Y %H:%M".loc() )
-                            .from('CloudKeePass.databaseController.entries*selection.firstObject.lastModificationDateTime'),
+                            .from('CloudKeePass.entriesController*selection.firstObject.lastModificationDateTime'),
                     }),
 
                     previousButton: SC.ImageButtonView.design({
                         layout: { top: 0, left: 0, height: 24, width: 24 },
                         classNames: ['history-navigation-button'],
                         image: 'history-previous-button',
-                        isEnabledBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.canRewindVersions',
-                        targetBinding: 'CloudKeePass.databaseController.entries*selection.firstObject',
+                        isEnabledBinding: 'CloudKeePass.entriesController*selection.firstObject.canRewindVersions',
+                        targetBinding: 'CloudKeePass.entriesController*selection.firstObject',
                         action: 'rewindVersions',
                     }),
 
@@ -297,8 +297,8 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                         classNames: ['history-navigation-button'],
                         action: 'submit',
                         image: 'history-next-button',
-                        isEnabledBinding: 'CloudKeePass.databaseController.entries*selection.firstObject.canForwardVersions',
-                        targetBinding: 'CloudKeePass.databaseController.entries*selection.firstObject',
+                        isEnabledBinding: 'CloudKeePass.entriesController*selection.firstObject.canForwardVersions',
+                        targetBinding: 'CloudKeePass.entriesController*selection.firstObject',
                         action: 'forwardVersions',
                     }),
                 }),
