@@ -61,8 +61,8 @@ CloudKeePass.operateDatabasePage = SC.Page.design({
                 contentView: SC.SourceListView.design({
                     rowHeight: 20,
 
-                    contentBinding: 'CloudKeePass.databaseController.entriesSets.arrangedObjects',
-                    selectionBinding: 'CloudKeePass.databaseController.entriesSets.selection',
+                    contentBinding: 'CloudKeePass.entriesSetsController.arrangedObjects',
+                    selectionBinding: 'CloudKeePass.entriesSetsController.selection',
 
                     groupExampleView: SC.ListItemView.design({
                         contentValueKey: 'name',

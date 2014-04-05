@@ -33,40 +33,8 @@ CloudKeePass.databaseController = SC.Controller.create({
         }).from('CloudKeePass.databaseController.searchText'),
     }),
 
-    entriesSets: SC.TreeController.create({
-        treeItemIsGrouped: YES,
-        allowsMultipleSelection: NO,
-        allowsEmptySelection: YES,
-
-        content: SC.Object.create({
-            treeItemIsExpanded: YES,
-            treeItemChildren: [
-                CloudKeePass.KDBX.EntriesSet.create({
-                    name: "All".loc(),
-                    entriesCountBinding: '*entries.length',
-                    icon: 'entries-sets-all',
-                    elementBinding: 'CloudKeePass.databaseController.xmlDocument',
-                    entriesXPath: '//Group/Entry',
-                }),
-                CloudKeePass.KDBX.Group.create({
-                    name: "Groups".loc(),
-                    elementBinding: 'CloudKeePass.databaseController.xmlDocument',
-                    groupXPath: '/KeePassFile/Root/Group',
-                }),
-                CloudKeePass.KDBX.Tags.create({
-                    name: "Tags".loc(),
-                    elementBinding: 'CloudKeePass.databaseController.xmlDocument',
-                }),
-            ],
-        }),
-
-        _contentDidChange: function() {
-            this.notifyPropertyChange('content');
-        }.observes('.content.treeItemChildren*@each.treeItemChildren'),
-    }),
-
     entries: SC.ArrayController.create({
-        contentBindingSelection: SC.Binding.to('CloudKeePass.databaseController.entriesSets*selection.firstObject.entries')
+        contentBindingSelection: SC.Binding.to('CloudKeePass.entriesSetsController*selection.firstObject.entries')
                                            .from('CloudKeePass.databaseController.entries.content'),
         contentBindingSearchResults: SC.Binding.to('CloudKeePass.databaseController*searchResults.entries')
                                                .from('CloudKeePass.databaseController.entries.content'),
