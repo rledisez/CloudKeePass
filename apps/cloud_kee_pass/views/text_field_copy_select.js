@@ -7,8 +7,17 @@ CloudKeePass.TextFieldCopySelectView = SC.TextFieldView.extend({
     _rightAccessoryViewDidChange: function() {
         // Resize the view if rightAccessoryView is resized (because the copyButton is
         // hidden if flash is not available)
-        this.set('autoResizePadding', this.get('rightAccessoryView').get('layout').width);
-    }.observes('rightAccessoryView', 'rightAccessoryView.layout'),
+        this.set('autoResizePadding', this._rightAccessoryView.get('layout').width);
+        this.displayDidChange(); // Force the refresh of the view b/c it does not happen
+    },
+
+    init: function() {
+        sc_super();
+
+        // Add an observer in init() because the rightAccessoryView is actually stored in
+        // _rightAccessoryView which is not KVO capable
+        this._rightAccessoryView.addObserver('layout', this, this._rightAccessoryViewDidChange);
+    },
 
     _isMouseOver: function(cursorX, cursorY) {
         var element = document.getElementById( this.get('layerId') );
