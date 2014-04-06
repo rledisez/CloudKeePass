@@ -2,8 +2,6 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
     initialSubstate: 'browsePasswordsState',
 
     enterState: function() {
-        CloudKeePass.getPath('operateDatabasePage.mainPane.viewer.entryContent')
-            .set('nowShowing', 'CloudKeePass.operateDatabasePage.mainPane.viewer.entryContent_noSelection');
         CloudKeePass.getPath('operateDatabasePage.mainPane').append();
     },
 
@@ -27,21 +25,14 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
         initialSubstate: 'browseDatabaseState',
 
         _entrySelectionDidChange: function() {
-            var selection = CloudKeePass.entriesController.get('selection');
-
-            var viewName = 'entryContent_noSelection';
-            if( selection && selection.get('length') == 1 ) {
-                viewName = 'entryContent_selection';
-
+            var selectedEntry = CloudKeePass.entriesController.get('selectedEntry');
+            if( selectedEntry ) {
                 // Reset the history navigation to the last version
-                while( selection.get('firstObject').get('canForwardVersions') ) {
-                    selection.get('firstObject').forwardVersions();
+                while( selectedEntry.get('canForwardVersions') ) {
+                    selectedEntry.forwardVersions();
                 }
             }
-
-            CloudKeePass.getPath('operateDatabasePage.mainPane.viewer.entryContent')
-                .set('nowShowing', 'CloudKeePass.operateDatabasePage.mainPane.viewer.%{0}'.fmt([viewName]));
-        }.stateObserves('CloudKeePass.entriesController.selection'),
+        }.stateObserves('CloudKeePass.entriesController*selectedEntry'),
 
         browseDatabaseState: SC.State.design({
             _searchFilterDidChange: function() {

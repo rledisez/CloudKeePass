@@ -19,5 +19,7 @@ CloudKeePass.entriesController = SC.ArrayController.create({
         // Always select the first element
         this.selectObject( this.get('firstSelectableObject') );
     }.observes('content'),
-});
 
+
+    selectedEntryBinding: '*selection.firstObject',
+});
