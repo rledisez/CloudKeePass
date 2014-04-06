@@ -4,6 +4,10 @@ sc_require('library/kdb-sc');
 CloudKeePass.searchEntriesController = SC.Controller.create({
     filter: '',
 
+    cleanedFilter: function() {
+        return this.get('filter').trim();
+    }.property('filter').cacheable(),
+
     entriesBinding: '.resultsSet*entries',
 
     resultsSet: CloudKeePass.KDBX.EntriesSet.create({
@@ -23,6 +27,6 @@ CloudKeePass.searchEntriesController = SC.Controller.create({
                     (Key="Notes" and contains(translate(Value, "%{0}", "%{1}"),"%{1}"))     \
                 ]                                                                           \
             ]'.fmt([filter.toUpperCase(), filter.toLowerCase()]);
-        }).from('CloudKeePass.searchEntriesController.filter'),
+        }).from('CloudKeePass.searchEntriesController.cleanedFilter'),
     }),
 });
