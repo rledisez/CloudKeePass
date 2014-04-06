@@ -55,8 +55,8 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
             _entriesSetsSelectionBackup: null,
 
             enterState: function() {
-                this._entriesSetsSelectionBackup = CloudKeePass.entriesSetsController.get('selection').get('firstObject');
-                CloudKeePass.entriesSetsController.selectObject(null);
+                this._entriesSetsSelectionBackup = CloudKeePass.entriesSetsController.get('selection');
+                CloudKeePass.entriesSetsController.set('selection', null);
                 CloudKeePass.entriesController.set('displaySearchEntries', YES);
             },
 
@@ -67,7 +67,7 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
                 // Restore entriesSets selection only if there is not already a selection
                 //  => only if not exiting because of _entriesSetsSelectionDidChange()
                 if( !CloudKeePass.entriesSetsController.get('hasSelection') ) {
-                    CloudKeePass.entriesSetsController.selectObject(this._entriesSetsSelectionBackup);
+                    CloudKeePass.entriesSetsController.set('selection', this._entriesSetsSelectionBackup);
                 }
                 this._entriesSetsSelectionBackup = null;
             },

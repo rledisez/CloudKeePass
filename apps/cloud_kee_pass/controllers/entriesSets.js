@@ -6,6 +6,8 @@ CloudKeePass.entriesSetsController = SC.TreeController.create({
     allowsMultipleSelection: NO,
     allowsEmptySelection: YES,
 
+    entriesBinding: '*selection.firstObject.entries',
+
     content: SC.Object.create({
         treeItemIsExpanded: YES,
         treeItemChildren: [
