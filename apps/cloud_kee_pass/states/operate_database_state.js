@@ -44,44 +44,39 @@ CloudKeePass.OperateDatabaseState = SC.State.design({
         }.stateObserves('CloudKeePass.entriesController.selection'),
 
         browseDatabaseState: SC.State.design({
-            _entriesSetsSelectionBackup: null,
-
-            enterState: function() {
-                CloudKeePass.searchEntriesController.set('filter', '');
-
-                if( CloudKeePass.entriesSetsController.get('selection').get('length') == 0 ) {
-                    CloudKeePass.entriesSetsController.selectObject(this._entriesSetsSelectionBackup);
-                }
-                CloudKeePass.entriesController.get('contentBindingSelection').connect();
-            },
-
-            exitState: function() {
-                this._entriesSetsSelectionBackup = CloudKeePass.entriesSetsController.get('selection').get('firstObject');
-                CloudKeePass.entriesController.get('contentBindingSelection').disconnect();
-            },
-
             _searchFilterDidChange: function() {
-                if( CloudKeePass.searchEntriesController.get('filter').length > 0 ) {
+                if( CloudKeePass.searchEntriesController.get('cleanedFilter').length > 0 ) {
                     this.gotoState('browseSearchResultsState');
                 }
-            }.stateObserves('CloudKeePass.searchEntriesController.filter'),
+            }.stateObserves('CloudKeePass.searchEntriesController.cleanedFilter'),
         }),
 
         browseSearchResultsState: SC.State.design({
+            _entriesSetsSelectionBackup: null,
+
             enterState: function() {
+                this._entriesSetsSelectionBackup = CloudKeePass.entriesSetsController.get('selection').get('firstObject');
                 CloudKeePass.entriesSetsController.selectObject(null);
-                CloudKeePass.entriesController.get('contentBindingSearchResults').connect();
+                CloudKeePass.entriesController.set('displaySearchEntries', YES);
             },
 
             exitState: function() {
-                CloudKeePass.entriesController.get('contentBindingSearchResults').disconnect();
+                CloudKeePass.searchEntriesController.set('filter', '');
+                CloudKeePass.entriesController.set('displaySearchEntries', NO);
+
+                // Restore entriesSets selection only if there is not already a selection
+                //  => only if not exiting because of _entriesSetsSelectionDidChange()
+                if( !CloudKeePass.entriesSetsController.get('hasSelection') ) {
+                    CloudKeePass.entriesSetsController.selectObject(this._entriesSetsSelectionBackup);
+                }
+                this._entriesSetsSelectionBackup = null;
             },
 
             _searchFilterDidChange: function() {
-                if( CloudKeePass.searchEntriesController.get('filter').length == 0 ) {
+                if( CloudKeePass.searchEntriesController.get('cleanedFilter').length == 0 ) {
                     this.gotoState('browseDatabaseState');
                 }
-            }.stateObserves('CloudKeePass.searchEntriesController.filter'),
+            }.stateObserves('CloudKeePass.searchEntriesController.cleanedFilter'),
 
             _entriesSetsSelectionDidChange: function() {
                 this.gotoState('browseDatabaseState');
