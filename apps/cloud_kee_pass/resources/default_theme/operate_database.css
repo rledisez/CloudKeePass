@@ -35,6 +35,13 @@ $theme.toolbar {
             background: #fff;
             -webkit-appearance: searchfield;
             font-size: 20px;
+
+            .firefox & {
+                -moz-appearance: searchfield;
+                width: 226px; /* 250px width - firefox border for searchfield */
+                height: 18px; /* 20px width - firefox border for searchfield */
+                font-size: 13px;
+            }
         }
     }
 }
