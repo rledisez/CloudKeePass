@@ -54,7 +54,7 @@ CloudKeePass.KDBX.Group = CloudKeePass.KDBX.EntriesSet.extend(SC.TreeItemContent
         } else {
             return null;
         }
-    }.property('element','groupXPath').cacheable(),
+    }.property('document','element','groupXPath').cacheable(),
 
     name: function() {
         if( this.get('document') && this.get('element') ) {
@@ -64,7 +64,7 @@ CloudKeePass.KDBX.Group = CloudKeePass.KDBX.EntriesSet.extend(SC.TreeItemContent
         } else {
             return null;
         }
-    }.property('element','groupElement').cacheable(),
+    }.property('document','element').cacheable(),
 
     subGroups: function() {
         var groups = [];
@@ -163,7 +163,7 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
         }
 
         return elementVersions;
-    }.property('element').cacheable(),
+    }.property('document','element').cacheable(),
 
     elementVersion: function() {
         return this.get('_elementVersions')[this.get('_elementVersionIdx')];
@@ -205,7 +205,7 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
         } else {
             return null;
         }
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
     // FIXME: that's a hack because iconBinding on ListItemView does not work fine
     icon32Binding: SC.Binding.transform(function (value) { return 'icon-%{0}-32'.fmt([value]); }).from('.iconId'),
 
@@ -226,7 +226,7 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
                 .stringValue;
             return SC.DateTime.parse(dateTimeStr);
         }
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     _stringValue: function(key, value) {
         if( this.get('document') && this.get('elementVersion') ) {
@@ -245,23 +245,23 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
 
     title: function() {
         return this._stringValue('Title');
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     username: function() {
         return this._stringValue('UserName');
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     password: function() {
         return this._stringValue('Password');
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     url: function() {
         return this._stringValue('URL');
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     notes: function() {
         return this._stringValue('Notes');
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     tags: function() {
         var tags = [];
@@ -276,7 +276,7 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
         }
 
         return tags;
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 
     files: function() {
         var binaries = [];
@@ -298,5 +298,5 @@ CloudKeePass.KDBX.Entry = SC.Object.extend(CloudKeePass.KDBX.DomElement, {
         }
 
         return binaries;
-    }.property('elementVersion').cacheable(),
+    }.property('document','elementVersion').cacheable(),
 });
