@@ -6,8 +6,11 @@ $theme.open-database-page {
     .sc-text-field-view {
         background: transparent;
 
-            &.native-drop-target .border {
+            &.drop-target-valid .border {
                 border: 6px dashed #02c202;
+            }
+            &.drop-target-invalid .border {
+                border: 6px dashed #f99;
             }
         .border {
             display: block;

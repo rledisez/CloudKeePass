@@ -22,15 +22,30 @@ CloudKeePass.openDatabasePage = SC.Page.design({
             layout: { centerY: 0, centerX: 0, height: 138, width: 300 },
             childViews: ['urlField','passphraseField','statusLabel','halfRoundView'],
 
-            urlField: SC.TextFieldView.design(CloudKeePass.NativeDropTarget, {
+            urlField: SC.TextFieldView.design({
                 layout: { centerY: -25, left: 0, right: 0, height: 40 },
                 hint: "KDBX file: enter its address or drop it here",
-                classNameBindings: ['nativeDropTargetActive:native-drop-target'],
+                classNameBindings: ['dropTargetValid:drop-target-valid','dropTargetInvalid:drop-target-invalid'],
                 valueBinding: 'CloudKeePass.databaseController.url',
+                dropTargetValid: NO,
+                dropTargetInvalid: NO,
 
-                dragDropped: function(event) {
-                    console.log(event.dataTransfer.files[0].name);
-                    CloudKeePass.statechart.sendEvent('fileDropped', event.dataTransfer.files[0]);
+                dataDragHovered: function(evt) {
+                    if( evt && evt.dataTransfer && evt.dataTransfer.types && evt.dataTransfer.types.contains('Files') ) {
+                        this.set('dropTargetValid', YES);
+                        evt.dataTransfer.dropEffect = 'copy';
+                    } else {
+                        this.set('dropTargetInvalid', YES);
+                    }
+                },
+
+                dataDragDropped: function(evt) {
+                    CloudKeePass.statechart.sendEvent('fileDropped', evt.dataTransfer.files[0]);
+                },
+
+                dataDragExited: function(evt) {
+                    this.set('dropTargetValid', NO);
+                    this.set('dropTargetInvalid', NO);
                 },
             }),
 
