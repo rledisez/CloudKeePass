@@ -215,7 +215,7 @@ KDB.prototype._xmlContent = function() {
             var gunzip = new Zlib.Gunzip(KDB.prototype.wordArrayToUint8Array(blocksData));
             var uncompressedData = gunzip.decompress();
             var str = "";
-            var split = Math.pow(2,15); // Safari have a limit of 2^16
+            var split = Math.pow(2,14); // WebWorker in Chrome have a limit of 2^15
             for(var i=0; i<uncompressedData.length; i += split) {
                 str = str.concat( String.fromCharCode.apply(null, uncompressedData.subarray(i, i + split)) );
             }
