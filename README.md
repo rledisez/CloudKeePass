@@ -12,8 +12,9 @@ Some functionnalities:
 
 # Installation
 
-1. CloudKeePass is a SproutCore application. So you must install SproutCore to compile the application:
+1. CloudKeePass is a SproutCore (>= 1.11) application. So you must install SproutCore to compile the application:
 http://sproutcore.com/install/
+Note that, while not specified in the SproutCore documentation, Java >= 1.4 is required to execute the minification of CSS and JavaScript files.
 
 2. Then go to the directory where you downloaded the source of CloudKeePass and execute the following command:
 `sc-build cloud_kee_pass`
