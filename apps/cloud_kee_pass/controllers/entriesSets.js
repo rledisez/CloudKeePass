@@ -23,17 +23,25 @@ CloudKeePass.entriesSetsController = SC.TreeController.create({
                         element: xmlDocument,
                         entriesXPath: '//Group/Entry',
                     }),
-                    CloudKeePass.KDBX.Group.create({
-                        name: "Groups".loc(),
-                        element: xmlDocument,
-                        groupXPath: '/KeePassFile/Root/Group',
-                    }),
-                    CloudKeePass.KDBX.Tags.create({
-                        name: "Tags".loc(),
-                        element: xmlDocument,
-                    }),
                 ],
             });
+
+            var groups = CloudKeePass.KDBX.Group.create({
+                name: "Groups".loc(),
+                element: xmlDocument,
+                groupXPath: '/KeePassFile/Root/Group',
+            });
+            if( groups.get('treeItemChildren') ) {
+                newContent.get('treeItemChildren').pushObject(groups);
+            }
+
+            var tags = CloudKeePass.KDBX.Tags.create({
+                name: "Tags".loc(),
+                element: xmlDocument,
+            });
+            if( tags.get('treeItemChildren') ) {
+                newContent.get('treeItemChildren').pushObject(tags);
+            }
         }
         this.set('content', newContent);
     }.observes('CloudKeePass.databaseController*xmlDocument'),
