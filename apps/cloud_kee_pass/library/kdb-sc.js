@@ -42,7 +42,6 @@ CloudKeePass.KDBX.Group = CloudKeePass.KDBX.EntriesSet.extend(SC.TreeItemContent
     icon: 'entries-sets-group',
 
     treeItemIsExpanded: NO,
-    treeItemChildrenBinding: '.subGroups',
 
     groupXPath: null,
 
@@ -66,7 +65,7 @@ CloudKeePass.KDBX.Group = CloudKeePass.KDBX.EntriesSet.extend(SC.TreeItemContent
         }
     }.property('document','element').cacheable(),
 
-    subGroups: function() {
+    treeItemChildren: function() {
         var groups = [];
 
         if( this.get('document') && this.get('groupElement') ) {
@@ -90,9 +89,8 @@ CloudKeePass.KDBX.Group = CloudKeePass.KDBX.EntriesSet.extend(SC.TreeItemContent
 
 CloudKeePass.KDBX.Tags = SC.Object.extend(SC.TreeItemContent, CloudKeePass.KDBX.DomElement, {
     treeItemIsExpanded: NO,
-    treeItemChildrenBinding: '.tagsEntriesSet',
 
-    tagsEntriesSet: function() {
+    treeItemChildren: function() {
         var tags = [];
         var tagsEntriesSets = [];
 
@@ -120,7 +118,6 @@ CloudKeePass.KDBX.Tags = SC.Object.extend(SC.TreeItemContent, CloudKeePass.KDBX.
             }
         }
 
-        return tagsEntriesSets;
         return ( tagsEntriesSets.get('length') > 0 )
             ? tagsEntriesSets
             : null; // Return null to avoid that TreeController draw an empty group
